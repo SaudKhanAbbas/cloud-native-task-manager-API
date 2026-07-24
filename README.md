@@ -1,182 +1,134 @@
 # Cloud-Native Task Manager API
 
-Production-ready Node.js and Express API for task management with PostgreSQL, Prisma, JWT authentication, validation, Swagger/OpenAPI, Docker, AWS deployment assets, Terraform, and Kubernetes manifests.
+A production-ready REST API for task management built with **Node.js**, **Express**, **PostgreSQL**, and **Prisma**. The project includes JWT authentication, Docker support, CI/CD, and cloud deployment assets.
 
-## Stack
+## Tech Stack
 
-- Node.js
-- Express.js
-- PostgreSQL
-- Prisma ORM
-- JWT Authentication
-- Express Validator
-- dotenv
-- Jest
-- Docker and Docker Compose
-- Nginx
-- AWS EC2
-- GitHub Actions
-- Terraform
-- Kubernetes
+* Node.js
+* Express.js
+* PostgreSQL
+* Prisma ORM
+* JWT Authentication
+* Docker & Docker Compose
+* AWS EC2
+* Terraform
+* Kubernetes
+* GitHub Actions
 
 ## Features
 
-- User registration and login
-- JWT-protected routes
-- Role-based authorization ready for extension
-- CRUD for tasks
-- Task categories
-- Task priorities
-- Task status
-- Due dates
-- Search, filtering, sorting, and pagination
-- Input validation
-- Centralized error handling
-- Structured logging
-- Health checks
-- Swagger/OpenAPI documentation
-- Readiness and liveness probes
+* User authentication with JWT
+* Task CRUD operations
+* Search, filtering, sorting, and pagination
+* Request validation
+* Centralized error handling
+* Health check endpoints
+* Swagger API documentation
+* Dockerized development environment
+* AWS deployment configuration
 
 ## Project Structure
 
-- `src/controllers` - HTTP controllers
-- `src/routes` - API routes
-- `src/services` - business logic
-- `src/middleware` - auth, error, and validation middleware
-- `src/config` - environment, database, logger, Swagger config
-- `src/models` - Prisma client wrapper
-- `src/utils` - shared helpers
-- `src/validators` - request validation rules
-- `prisma` - schema and migrations
-- `scripts` - setup and deployment scripts
-- `tests` - unit and integration tests
-- `docker-compose.yml` - local app and PostgreSQL stack
-- `terraform` - AWS EC2 infrastructure
-- `nginx` - reverse proxy config
-- `k8s` - Kubernetes manifests
+```text
+src/
+├── config/
+├── controllers/
+├── middleware/
+├── routes/
+├── services/
+├── utils/
+├── validators/
 
-## Prerequisites
+prisma/
+tests/
+terraform/
+k8s/
+nginx/
+```
 
-- Node.js 20+
-- npm 10+
-- PostgreSQL 16+
-- Docker and Docker Compose
+## Getting Started
 
-## Environment Variables
+1. Clone the repository.
 
-Copy the example file and set the values:
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create an environment file:
 
 ```bash
 cp .env.example .env
 ```
 
-Required variables:
-
-- `PORT`
-- `NODE_ENV`
-- `DATABASE_URL`
-- `JWT_SECRET`
-- `JWT_EXPIRES_IN`
-- `CORS_ORIGIN`
-- `LOG_LEVEL`
-- `SWAGGER_ENABLED`
-
-## Local Setup
+4. Generate Prisma Client and run migrations:
 
 ```bash
-npm install
 npm run prisma:generate
 npm run prisma:migrate
+```
+
+5. Start the development server:
+
+```bash
 npm run dev
 ```
 
-API base URL:
+The API will be available at:
 
-```bash
+```text
 http://localhost:3000
 ```
 
-Swagger UI:
+Swagger Documentation:
 
-```bash
+```text
 http://localhost:3000/api-docs
 ```
 
-## NPM Scripts
-
-- `npm run dev` - start the API with nodemon
-- `npm start` - start the API in production mode
-- `npm run lint` - run ESLint
-- `npm test` - run Jest tests
-- `npm run test:watch` - run Jest in watch mode
-- `npm run prisma:generate` - generate Prisma client
-- `npm run prisma:migrate` - run Prisma migrations locally
-- `npm run prisma:studio` - open Prisma Studio
-
-## Testing
-
-Run all tests:
+## Useful Commands
 
 ```bash
-npm test -- --runInBand
-```
-
-Run linting:
-
-```bash
+npm run dev
+npm start
+npm test
 npm run lint
+npm run prisma:generate
+npm run prisma:migrate
 ```
 
 ## Docker
 
-Build and start the full stack:
+Start the application with Docker:
 
 ```bash
 docker compose up --build
 ```
 
-The Compose stack exposes:
+## API Endpoints
 
-- API: `http://localhost:3000`
-- PostgreSQL: `localhost:5432`
+### Authentication
 
-## GitHub Actions Deployment
-
-The CI workflow runs tests and builds the Docker image on pull requests and pushes to `main`.
-
-Deployment to EC2 runs on pushes to `main` only when these repository secrets are configured:
-
-- `EC2_HOST` - EC2 public IP address or DNS name
-- `EC2_USER` - SSH username, for example `ubuntu` or `ec2-user`
-- `EC2_SSH_KEY` - private SSH key with access to the EC2 instance
-- `DEPLOY_PATH` - application directory on the EC2 instance
-
-If any deployment secret is missing, the deploy job is skipped with a warning.
-
-## Health Checks
-
-- Liveness: `GET /api/v1/health/live`
-- Readiness: `GET /api/v1/health/ready`
-- General health alias: `GET /api/v1/health`
-
-## API Routes
-
-### Auth
-
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
+* `POST /api/v1/auth/register`
+* `POST /api/v1/auth/login`
 
 ### Tasks
 
-- `GET /api/v1/tasks`
-- `POST /api/v1/tasks`
-- `GET /api/v1/tasks/:taskId`
-- `PATCH /api/v1/tasks/:taskId`
-- `DELETE /api/v1/tasks/:taskId`
+* `GET /api/v1/tasks`
+* `POST /api/v1/tasks`
+* `GET /api/v1/tasks/:taskId`
+* `PATCH /api/v1/tasks/:taskId`
+* `DELETE /api/v1/tasks/:taskId`
 
 ### Health
 
-- `GET /api/v1/health`
-- `GET /api/v1/health/live`
-- `GET /api/v1/health/ready`
+* `GET /api/v1/health`
+* `GET /api/v1/health/live`
+* `GET /api/v1/health/ready`
 
+## License
+
+This project is intended for learning and portfolio purposes.
+
+This version removes repetitive sections while keeping the important information recruiters or contributors typically look for. It also makes the README easier to scan on GitHub.
