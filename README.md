@@ -10,7 +10,7 @@ A production-ready REST API for task management built with **Node.js**, **Expres
 * Prisma ORM
 * JWT Authentication
 * Docker & Docker Compose
-* AWS EC
+* AWS EC5
 * Terraform
 * Kubernetes
 * GitHub Actions
